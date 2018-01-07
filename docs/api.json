@@ -63,7 +63,7 @@
     },
     "/locations/address": {
       "get": {
-        "operationId": "all",
+        "operationId": "address",
         "tags": ["Locations"],
         "summary": "Returns Address json object",
         "parameters": [
@@ -93,45 +93,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                  "success": {
-                      "type": "boolean",
-                      "description": "If the address was successfully retrieved"
-                  },
-                  "street": {
-                      "type": "string",
-                      "description": "Street of the address"
-                  },
-                  "houseNumber": {
-                      "type": "number",
-                      "description": "House number of the address"
-                  },
-                  "houseNumberAddition": {
-                      "type": "string",
-                      "description": "House number addition of the address"
-                  },
-                  "zipcode": {
-                      "type": "string",
-                      "description": "Zip code of the address"
-                  },
-                  "city": {
-                      "type": "string",
-                      "description": "City of the address"
-                  },
-                  "country": {
-                      "type": "string",
-                      "description": "Two letter country code of the address"
-                  },
-                  "latitude": {
-                      "type": "string",
-                      "description": "Latitude of the address"
-                  },
-                  "longitude": {
-                      "type": "string",
-                      "description": "Longitude of the address"
-                  }
-                }
+              "$ref": "#/definitions/Address"
             }
           },
           "400": {
@@ -139,9 +101,71 @@
           }
         }
       }
-    }
+    },
+    "/locations/municipalities": {
+          "get": {
+              "operationId": "all",
+              "tags": ["Locations"],
+              "summary": "Returns JSON array of municipalities",
+              "responses": {
+                  "200": {
+                      "description": "OK",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "$ref": "#/definitions/Municipality"
+                          }
+                      }
+                  },
+                  "400": {
+                      "description": "Bad Request"
+                  }
+              }
+          }
+      }
   },
   "definitions": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "If the address was successfully retrieved"
+        },
+        "street": {
+          "type": "string",
+          "description": "Street of the address"
+        },
+        "houseNumber": {
+          "type": "number",
+          "description": "House number of the address"
+        },
+        "houseNumberAddition": {
+          "type": "string",
+          "description": "House number addition of the address"
+        },
+        "zipcode": {
+          "type": "string",
+          "description": "Zip code of the address"
+        },
+        "city": {
+          "type": "string",
+          "description": "City of the address"
+        },
+        "country": {
+          "type": "string",
+          "description": "Two letter country code of the address"
+        },
+        "latitude": {
+          "type": "string",
+          "description": "Latitude of the address"
+        },
+        "longitude": {
+          "type": "string",
+          "description": "Longitude of the address"
+        }
+      }
+    },
     "Announcements": {
       "type": "object",
       "properties": {
@@ -160,6 +184,19 @@
         "body": {
           "type": "string",
           "example": "The collection day for this month changed to friday"
+        }
+      }
+    },
+    "Municipality": {
+      "type": "object",
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "Two letter country code of the address"
+        },
+        "city": {
+          "type": "string",
+          "description": "Municipality"
         }
       }
     }
