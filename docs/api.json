@@ -122,7 +122,49 @@
                   }
               }
           }
+      },
+    "/locations/municipalityInfo": {
+          "get": {
+              "operationId": "info",
+              "tags": ["Locations"],
+              "summary": "Returns Info object for a specific municipality",
+              "parameters": [
+                  {
+                      "name": "zipcode",
+                      "in": "query",
+                      "description": "Zip code of user",
+                      "required": true,
+                      "type": "string"
+                  },
+                  {
+                      "name": "houseNumber",
+                      "in": "query",
+                      "description": "House number of user",
+                      "required": true,
+                      "type": "number"
+                  },
+                  {
+                      "name": "houseNumberAddition",
+                      "in": "query",
+                      "description": "House number addition of user",
+                      "required": false,
+                      "type": "string"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "OK",
+                      "schema": {
+                          "$ref": "#/definitions/MunicipalityInfo"
+                      }
+                  },
+                  "400": {
+                      "description": "Bad Request"
+                  }
+              }
+          }
       }
+
   },
   "definitions": {
     "Address": {
@@ -194,11 +236,61 @@
           "type": "string",
           "description": "Two letter country code of the address"
         },
-        "city": {
+        "municipality": {
           "type": "string",
           "description": "Municipality"
         }
       }
+    },
+    "MunicipalityInfo": {
+        "type": "object",
+        "properties":{
+            "success": {
+                "type": "boolean",
+                "description": "If success"
+            },
+            "gemeente": {
+                "type": "object",
+                "properties": {
+                    "naam": {
+                        "type": "string",
+                        "description": "Name of the municipaliy"
+                    },
+                    "kop": {
+                        "type": "string",
+                        "description": "Header"
+                    },
+                    "disclaimer": {
+                        "type": "string",
+                        "description": "Disclaimer"
+                    },
+                    "adressen": {
+                        "type": "string",
+                        "description": "HTML string with addresses and their info"
+                    },
+                    "info": {
+                        "type": "string",
+                        "description": "HTML string with municipality info"
+                    },
+                    "overige": {
+                        "type": "string",
+                        "description": "Other data"
+                    },
+                    "website": {
+                        "type": "string",
+                        "description": "Url to the website of the municipality"
+                    },
+                    "banner": {
+                        "type": "string",
+                        "description": "Banner"
+                    },
+                    "logo": {
+                        "type": "string",
+                        "description": "Image Url to the logo"
+                    }
+                }
+            }
+        }
     }
   }
 }
