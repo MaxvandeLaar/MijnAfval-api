@@ -1,296 +1,469 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Mijn Afval API",
-    "description": "",
-    "version": "1.0"
-  },
-  "produces": ["application/json"],
-  "tags": [
-    {
-      "name": "Announcements",
-      "description": "Announcements made by the garbage collecting company/municipality"
+    "swagger": "2.0",
+    "info": {
+        "title": "Mijn Afval API",
+        "description": "",
+        "version": "1.0"
     },
-    {
-      "name": "Locations",
-      "description": "Everything that has to do with locations"
-    }
-  ],
-  "paths": {
-    "/announcements/all": {
-      "get": {
-        "operationId": "all",
-        "tags": ["Announcements"],
-        "summary": "Returns JSON array of announcements",
-        "parameters": [
-          {
-            "name": "zipcode",
-            "in": "query",
-            "description": "Zip code of user",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "houseNumber",
-            "in": "query",
-            "description": "House number of user",
-            "required": true,
-            "type": "number"
-          },
-          {
-            "name": "houseNumberAddition",
-            "in": "query",
-            "description": "House number addition of user",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Announcements"
-              }
+    "produces": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Announcements",
+            "description": "Announcements made by the garbage collecting company/municipality"
+        },
+        {
+            "name": "Locations",
+            "description": "Everything that has to do with locations"
+        },
+        {
+            "name": "Garbage",
+            "description": "Everything that has to do with garbage"
+        }
+    ],
+    "paths": {
+        "/announcements/all": {
+            "get": {
+                "operationId": "all",
+                "tags": [
+                    "Announcements"
+                ],
+                "summary": "Returns JSON array of announcements",
+                "parameters": [
+                    {
+                        "name": "zipcode",
+                        "in": "query",
+                        "description": "Zip code of user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "houseNumber",
+                        "in": "query",
+                        "description": "House number of user",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "houseNumberAddition",
+                        "in": "query",
+                        "description": "House number addition of user",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Announcements"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
             }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/locations/address": {
-      "get": {
-        "operationId": "address",
-        "tags": ["Locations"],
-        "summary": "Returns Address json object",
-        "parameters": [
-          {
-            "name": "zipcode",
-            "in": "query",
-            "description": "Zip code of user",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "houseNumber",
-            "in": "query",
-            "description": "House number of user",
-            "required": true,
-            "type": "number"
-          },
-          {
-            "name": "houseNumberAddition",
-            "in": "query",
-            "description": "House number addition of user",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Address"
+        },
+        "/garbage/schedule": {
+            "get": {
+                "operationId": "all",
+                "tags": [
+                    "Garbage"
+                ],
+                "summary": "Returns JSON array of schedule garbage collection",
+                "parameters": [
+                    {
+                        "name": "zipcode",
+                        "in": "query",
+                        "description": "Zip code of user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "houseNumber",
+                        "in": "query",
+                        "description": "House number of user",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "houseNumberAddition",
+                        "in": "query",
+                        "description": "House number addition of user",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Schedule"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
             }
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/locations/municipalities": {
-          "get": {
-              "operationId": "all",
-              "tags": ["Locations"],
-              "summary": "Returns JSON array of municipalities",
-              "responses": {
-                  "200": {
-                      "description": "OK",
-                      "schema": {
-                          "type": "array",
-                          "items": {
-                              "$ref": "#/definitions/Municipality"
-                          }
-                      }
-                  },
-                  "400": {
-                      "description": "Bad Request"
-                  }
-              }
-          }
-      },
-    "/locations/municipalityInfo": {
-          "get": {
-              "operationId": "info",
-              "tags": ["Locations"],
-              "summary": "Returns Info object for a specific municipality",
-              "parameters": [
-                  {
-                      "name": "zipcode",
-                      "in": "query",
-                      "description": "Zip code of user",
-                      "required": true,
-                      "type": "string"
-                  },
-                  {
-                      "name": "houseNumber",
-                      "in": "query",
-                      "description": "House number of user",
-                      "required": true,
-                      "type": "number"
-                  },
-                  {
-                      "name": "houseNumberAddition",
-                      "in": "query",
-                      "description": "House number addition of user",
-                      "required": false,
-                      "type": "string"
-                  }
-              ],
-              "responses": {
-                  "200": {
-                      "description": "OK",
-                      "schema": {
-                          "$ref": "#/definitions/MunicipalityInfo"
-                      }
-                  },
-                  "400": {
-                      "description": "Bad Request"
-                  }
-              }
-          }
-      }
-
-  },
-  "definitions": {
-    "Address": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "type": "boolean",
-          "description": "If the address was successfully retrieved"
         },
-        "street": {
-          "type": "string",
-          "description": "Street of the address"
-        },
-        "houseNumber": {
-          "type": "number",
-          "description": "House number of the address"
-        },
-        "houseNumberAddition": {
-          "type": "string",
-          "description": "House number addition of the address"
-        },
-        "zipcode": {
-          "type": "string",
-          "description": "Zip code of the address"
-        },
-        "city": {
-          "type": "string",
-          "description": "City of the address"
-        },
-        "country": {
-          "type": "string",
-          "description": "Two letter country code of the address"
-        },
-        "latitude": {
-          "type": "string",
-          "description": "Latitude of the address"
-        },
-        "longitude": {
-          "type": "string",
-          "description": "Longitude of the address"
-        }
-      }
-    },
-    "Announcements": {
-      "type": "object",
-      "properties": {
-        "startDate": {
-          "type": "string",
-          "example": "13-01-1970"
-        },
-        "endDate": {
-          "type": "string",
-          "example": "31-01-1970"
-        },
-        "title": {
-          "type": "string",
-          "example": "Collection day moved"
-        },
-        "body": {
-          "type": "string",
-          "example": "The collection day for this month changed to friday"
-        }
-      }
-    },
-    "Municipality": {
-      "type": "object",
-      "properties": {
-        "country": {
-          "type": "string",
-          "description": "Two letter country code of the address"
-        },
-        "municipality": {
-          "type": "string",
-          "description": "Municipality"
-        }
-      }
-    },
-    "MunicipalityInfo": {
-        "type": "object",
-        "properties":{
-            "success": {
-                "type": "boolean",
-                "description": "If success"
-            },
-            "gemeente": {
-                "type": "object",
-                "properties": {
-                    "naam": {
-                        "type": "string",
-                        "description": "Name of the municipaliy"
+        "/garbage/info": {
+            "get": {
+                "operationId": "info",
+                "tags": [
+                    "Garbage"
+                ],
+                "summary": "Returns Info object for garbage of a specific municipality",
+                "parameters": [
+                    {
+                        "name": "zipcode",
+                        "in": "query",
+                        "description": "Zip code of user",
+                        "required": true,
+                        "type": "string"
                     },
-                    "kop": {
-                        "type": "string",
-                        "description": "Header"
+                    {
+                        "name": "houseNumber",
+                        "in": "query",
+                        "description": "House number of user",
+                        "required": true,
+                        "type": "number"
                     },
-                    "disclaimer": {
-                        "type": "string",
-                        "description": "Disclaimer"
+                    {
+                        "name": "houseNumberAddition",
+                        "in": "query",
+                        "description": "House number addition of user",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/GarbageInfo"
+                        }
                     },
-                    "adressen": {
-                        "type": "string",
-                        "description": "HTML string with addresses and their info"
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/locations/address": {
+            "get": {
+                "operationId": "address",
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Returns Address json object",
+                "parameters": [
+                    {
+                        "name": "zipcode",
+                        "in": "query",
+                        "description": "Zip code of user",
+                        "required": true,
+                        "type": "string"
                     },
-                    "info": {
-                        "type": "string",
-                        "description": "HTML string with municipality info"
+                    {
+                        "name": "houseNumber",
+                        "in": "query",
+                        "description": "House number of user",
+                        "required": true,
+                        "type": "number"
                     },
-                    "overige": {
-                        "type": "string",
-                        "description": "Other data"
+                    {
+                        "name": "houseNumberAddition",
+                        "in": "query",
+                        "description": "House number addition of user",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Address"
+                        }
                     },
-                    "website": {
-                        "type": "string",
-                        "description": "Url to the website of the municipality"
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/locations/municipalities": {
+            "get": {
+                "operationId": "all",
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Returns JSON array of municipalities",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Municipality"
+                            }
+                        }
                     },
-                    "banner": {
-                        "type": "string",
-                        "description": "Banner"
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/locations/municipalityInfo": {
+            "get": {
+                "operationId": "info",
+                "tags": [
+                    "Locations"
+                ],
+                "summary": "Returns Info object for a specific municipality",
+                "parameters": [
+                    {
+                        "name": "zipcode",
+                        "in": "query",
+                        "description": "Zip code of user",
+                        "required": true,
+                        "type": "string"
                     },
-                    "logo": {
-                        "type": "string",
-                        "description": "Image Url to the logo"
+                    {
+                        "name": "houseNumber",
+                        "in": "query",
+                        "description": "House number of user",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "houseNumberAddition",
+                        "in": "query",
+                        "description": "House number addition of user",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/MunicipalityInfo"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
                     }
                 }
             }
         }
+    },
+    "definitions": {
+        "Address": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "description": "If the address was successfully retrieved"
+                },
+                "street": {
+                    "type": "string",
+                    "description": "Street of the address"
+                },
+                "houseNumber": {
+                    "type": "number",
+                    "description": "House number of the address"
+                },
+                "houseNumberAddition": {
+                    "type": "string",
+                    "description": "House number addition of the address"
+                },
+                "zipcode": {
+                    "type": "string",
+                    "description": "Zip code of the address"
+                },
+                "city": {
+                    "type": "string",
+                    "description": "City of the address"
+                },
+                "country": {
+                    "type": "string",
+                    "description": "Two letter country code of the address"
+                },
+                "latitude": {
+                    "type": "string",
+                    "description": "Latitude of the address"
+                },
+                "longitude": {
+                    "type": "string",
+                    "description": "Longitude of the address"
+                }
+            }
+        },
+        "Announcements": {
+            "type": "object",
+            "properties": {
+                "startDate": {
+                    "type": "string",
+                    "example": "13-01-1970"
+                },
+                "endDate": {
+                    "type": "string",
+                    "example": "31-01-1970"
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Collection day moved"
+                },
+                "body": {
+                    "type": "string",
+                    "example": "The collection day for this month changed to friday"
+                }
+            }
+        },
+        "GarbageInfo": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "description": "If success"
+                },
+                "afvalinfo": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "afvalstromen": {
+                                "type": "object",
+                                "properties": {
+                                    "stroom": {
+                                        "type": "string",
+                                        "description": "Type of garbage"
+                                    }
+                                }
+                            },
+                            "naam": {
+                                "type": "string",
+                                "description": "Name of garbage type"
+                            },
+                            "naamkort": {
+                                "type": "string",
+                                "description": "Short name of garbage type"
+                            },
+                            "info": {
+                                "type": "string",
+                                "description": "HTML string with info on how garbage is collected"
+                            },
+                            "wel": {
+                                "type": "string",
+                                "description": "HTML string on How To"
+                            },
+                            "niet": {
+                                "type": "string",
+                                "description": "HTML string on How NOT to"
+                            },
+                            "calicon": {
+                                "type": "string",
+                                "description": "Calendar icon filename"
+                            },
+                            "mapicon": {
+                                "type": "string",
+                                "description": "Category icon filename"
+                            }
+                        }
+                    },
+                    "description": "Info per garbage type"
+                }
+            }
+        },
+        "Municipality": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string",
+                    "description": "Two letter country code of the address"
+                },
+                "municipality": {
+                    "type": "string",
+                    "description": "Municipality"
+                }
+            }
+        },
+        "MunicipalityInfo": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "description": "If success"
+                },
+                "gemeente": {
+                    "type": "object",
+                    "properties": {
+                        "naam": {
+                            "type": "string",
+                            "description": "Name of the municipaliy"
+                        },
+                        "kop": {
+                            "type": "string",
+                            "description": "Header"
+                        },
+                        "disclaimer": {
+                            "type": "string",
+                            "description": "Disclaimer"
+                        },
+                        "adressen": {
+                            "type": "string",
+                            "description": "HTML string with addresses and their info"
+                        },
+                        "info": {
+                            "type": "string",
+                            "description": "HTML string with municipality info"
+                        },
+                        "overige": {
+                            "type": "string",
+                            "description": "Other data"
+                        },
+                        "website": {
+                            "type": "string",
+                            "description": "Url to the website of the municipality"
+                        },
+                        "banner": {
+                            "type": "string",
+                            "description": "Banner"
+                        },
+                        "logo": {
+                            "type": "string",
+                            "description": "Image Url to the logo"
+                        }
+                    }
+                }
+            }
+        },
+        "Schedule": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Type of garbage"
+                },
+                "dates": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Scheduled collection dates"
+                }
+            }
+        }
     }
-  }
 }
