@@ -1,0 +1,88 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Mijn Afval API",
+    "description": "",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "tags": [
+    {
+      "name": "Announcements",
+      "description": "Announcements made by the garbage collecting company/municipality"
+    },
+    {
+      "name": "Locations",
+      "description": "Everything that has to do with locations"
+    }
+  ],
+  "paths": {
+    "/announcements/all": {
+      "get": {
+        "operationId": "all",
+        "tags": ["Announcements"],
+        "summery": "Returns JSON array of announcements",
+        "parameters": [
+          {
+            "name": "zipcode",
+            "in": "query",
+            "description": "Zip code of user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "houseNumber",
+            "in": "query",
+            "description": "House number of user",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "houseNumberAddition",
+            "in": "query",
+            "description": "House number addition of user",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Announcements"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Announcements": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "example": "13-01-1970"
+        },
+        "endDate": {
+          "type": "string",
+          "example": "31-01-1970"
+        },
+        "title": {
+          "type": "string",
+          "example": "Collection day moved"
+        },
+        "body": {
+          "type": "string",
+          "example": "The collection day for this month changed to friday"
+        }
+      }
+    }
+  }
+}
