@@ -21,7 +21,7 @@
       "get": {
         "operationId": "all",
         "tags": ["Announcements"],
-        "summery": "Returns JSON array of announcements",
+        "summary": "Returns JSON array of announcements",
         "parameters": [
           {
             "name": "zipcode",
@@ -53,6 +53,85 @@
               "items": {
                 "$ref": "#/definitions/Announcements"
               }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/locations/address": {
+      "get": {
+        "operationId": "all",
+        "tags": ["Locations"],
+        "summary": "Returns Address json object",
+        "parameters": [
+          {
+            "name": "zipcode",
+            "in": "query",
+            "description": "Zip code of user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "houseNumber",
+            "in": "query",
+            "description": "House number of user",
+            "required": true,
+            "type": "number"
+          },
+          {
+            "name": "houseNumberAddition",
+            "in": "query",
+            "description": "House number addition of user",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                      "type": "boolean",
+                      "description": "If the address was successfully retrieved"
+                  },
+                  "street": {
+                      "type": "string",
+                      "description": "Street of the address"
+                  },
+                  "houseNumber": {
+                      "type": "number",
+                      "description": "House number of the address"
+                  },
+                  "houseNumberAddition": {
+                      "type": "string",
+                      "description": "House number addition of the address"
+                  },
+                  "zipcode": {
+                      "type": "string",
+                      "description": "Zip code of the address"
+                  },
+                  "city": {
+                      "type": "string",
+                      "description": "City of the address"
+                  },
+                  "country": {
+                      "type": "string",
+                      "description": "Two letter country code of the address"
+                  },
+                  "latitude": {
+                      "type": "string",
+                      "description": "Latitude of the address"
+                  },
+                  "longitude": {
+                      "type": "string",
+                      "description": "Longitude of the address"
+                  }
+                }
             }
           },
           "400": {
