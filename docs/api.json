@@ -5,6 +5,7 @@
         "description": "",
         "version": "1.0"
     },
+    "basePath": "/v1.0",
     "produces": [
         "application/json"
     ],
