@@ -529,9 +529,9 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-deafvalapp-api-proxy@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/deafvalapp-api-proxy/-/deafvalapp-api-proxy-1.0.2.tgz#053f050bc7786f559f4d54961bd8ab4a7f081646"
+deafvalapp-api-proxy@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/deafvalapp-api-proxy/-/deafvalapp-api-proxy-2.0.0.tgz#79292ae4fd6f283a48073f2e598dc48cca0f1ca0"
   dependencies:
     http-status-codes "^1.3.0"
     promise "^8.0.1"
@@ -1604,9 +1604,9 @@ node-sass@^3.4.2:
     request "^2.61.0"
     sass-graph "^2.1.1"
 
-nodemon@^1.14.8:
-  version "1.14.8"
-  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.14.8.tgz#0cc906035e2d4bf771d5f40fb5d8e37fb3e673e7"
+nodemon@^1.14.9:
+  version "1.14.9"
+  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.14.9.tgz#eec45a916db61503264037b4233c0f8a15d69802"
   dependencies:
     chokidar "^1.7.0"
     debug "^2.6.8"

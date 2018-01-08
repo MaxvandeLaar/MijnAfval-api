@@ -343,20 +343,20 @@
                     "items": {
                         "type": "object",
                         "properties": {
-                            "afvalstromen": {
+                            "garbageTypes": {
                                 "type": "object",
                                 "properties": {
-                                    "stroom": {
+                                    "type": {
                                         "type": "string",
                                         "description": "Type of garbage"
                                     }
                                 }
                             },
-                            "naam": {
+                            "name": {
                                 "type": "string",
                                 "description": "Name of garbage type"
                             },
-                            "naamkort": {
+                            "shortname": {
                                 "type": "string",
                                 "description": "Short name of garbage type"
                             },
@@ -364,11 +364,11 @@
                                 "type": "string",
                                 "description": "HTML string with info on how garbage is collected"
                             },
-                            "wel": {
+                            "howTo": {
                                 "type": "string",
                                 "description": "HTML string on How To"
                             },
-                            "niet": {
+                            "howNotTO": {
                                 "type": "string",
                                 "description": "HTML string on How NOT to"
                             },
@@ -406,14 +406,14 @@
                     "type": "boolean",
                     "description": "If success"
                 },
-                "gemeente": {
+                "municipality": {
                     "type": "object",
                     "properties": {
-                        "naam": {
+                        "name": {
                             "type": "string",
                             "description": "Name of the municipaliy"
                         },
-                        "kop": {
+                        "header": {
                             "type": "string",
                             "description": "Header"
                         },
@@ -421,7 +421,7 @@
                             "type": "string",
                             "description": "Disclaimer"
                         },
-                        "adressen": {
+                        "addresses": {
                             "type": "string",
                             "description": "HTML string with addresses and their info"
                         },
@@ -429,7 +429,7 @@
                             "type": "string",
                             "description": "HTML string with municipality info"
                         },
-                        "overige": {
+                        "otherInfo": {
                             "type": "string",
                             "description": "Other data"
                         },

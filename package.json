@@ -8,7 +8,7 @@
   "dependencies": {
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
-    "deafvalapp-api-proxy": "^1.0.2",
+    "deafvalapp-api-proxy": "^2.0.0",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.15.5",
@@ -20,6 +20,6 @@
     "swagger-ui-express": "^2.0.13"
   },
   "devDependencies": {
-    "nodemon": "^1.14.8"
+    "nodemon": "^1.14.9"
   }
 }
