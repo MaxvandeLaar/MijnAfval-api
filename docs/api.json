@@ -116,6 +116,60 @@
                 }
             }
         },
+        "/garbage/upcoming": {
+            "get": {
+                "operationId": "all",
+                "tags": [
+                    "Garbage"
+                ],
+                "summary": "Returns JSON array of upcoming schedule garbage collection",
+                "parameters": [
+                    {
+                        "name": "zipcode",
+                        "in": "query",
+                        "description": "Zip code of user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "houseNumber",
+                        "in": "query",
+                        "description": "House number of user",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "houseNumberAddition",
+                        "in": "query",
+                        "description": "House number addition of user",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "fromNow",
+                        "in": "query",
+                        "description": "Upcoming schedule how many days from now",
+                        "required": false,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Upcoming"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+
         "/garbage/info": {
             "get": {
                 "operationId": "info",
@@ -463,6 +517,19 @@
                         "type": "string"
                     },
                     "description": "Scheduled collection dates"
+                }
+            }
+        },
+        "Upcoming": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Type of garbage"
+                },
+                "date": {
+                    "type": "string",
+                    "description": "Scheduled collection date"
                 }
             }
         }
