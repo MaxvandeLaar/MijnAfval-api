@@ -7,9 +7,6 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./docs/api.json');
 const path = require('path');
 const apiV1_0 = require(path.resolve(global.__base, 'routes/v1.0/index'));
-// const locations = require(path.resolve(global.__base, 'routes/v1.0/locations');
-// const announcements = require('./routes/v1.0/announcements');
-// const garbage = require('./routes/v1.0/garbage');
 
 const app = express();
 
@@ -19,9 +16,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/v1.0/', apiV1_0);
-// app.use('/locations', locations);
-// app.use('/announcements', announcements);
-// app.use('/garbage', garbage);
 app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
@@ -30,6 +24,7 @@ app.use((req, res, next) => {
     err.status = 404;
     next(err);
 });
+
 
 // error handler
 app.use((err, req, res, next) => {

@@ -87,7 +87,6 @@ function onListening() {
         ? 'pipe ' + addr
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
-    process.send('ready');
 }
 
 process.on('SIGINT', () => {
